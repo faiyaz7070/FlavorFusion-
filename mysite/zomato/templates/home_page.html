@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 6px;
+            }
+            h1, h2 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our Restaurant</h1>
+        <h2>Menu</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Available</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dish in dishes %}
+                <tr>
+                    <td>{{ dish.id }}</td>
+                    <td>{{ dish.name }}</td>
+                    <td>{{ dish.price }}</td>
+                    <td>{{ dish.available }}</td>
+                    <td>{{ dish.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <p><a href="{% url 'user_login' %}">Log in</a> or <a href="{% url 'user_registration' %}">Register</a> to place an order.</p>
+    </div>
+    <a href="{% url 'admin_section' %}">Admin Login</a>
+
+</body>
+</html>

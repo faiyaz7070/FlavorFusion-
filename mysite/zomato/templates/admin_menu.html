@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Menu</title>
+  
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Menu</h1>
+        <p><a href="{% url 'display_menu' %}">Display Menu</a></p>
+        <p><a href="{% url 'add_dish' %}">Add Dish</a></p>
+        <p><a href="{% url 'update_dish_availability' %}">Update Dish Availability</a></p>
+        <p><a href="{% url 'remove_dish' %}">Remove Dish</a></p>
+        <p><a href="{% url 'review_orders' %}">Review Orders</a></p>
+        <p><a href="{% url 'admin_logout' %}">Log Out</a></p>
+    </div>
+</body>
+</html>

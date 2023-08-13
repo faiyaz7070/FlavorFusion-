@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Section</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ebd5d5;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #7e1d7c;
+            margin-bottom: 20px;
+        }
+        p {
+            text-align: center;
+            margin: 15px 0;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, User</h1>
+        <p><a href="{% url 'main_page' %}">Home</a></p>
+        <p><a href="{% url 'display_menu' %}">View Menu</a></p>
+        <p><a href="{% url 'take_order' %}">Place Order</a></p>
+        <p><a href="{% url 'update_order_status' %}">Update Order Status</a></p>
+        <p><a href="{% url 'user_logout' %}">Log Out</a></p>
+    </div>
+</body>
+</html>

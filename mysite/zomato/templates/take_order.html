@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        p {
+            text-align: center;
+            margin-top: 12px;
+        }
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Take Order</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="customer_name">Customer Name:</label>
+            <input type="text" id="customer_name" name="customer_name" required>
+            <br>
+            <label for="order_items">Select Dishes:</label>
+            <br>
+            {% for dish in dishes %}
+                <input type="checkbox" id="dish_{{ dish.id }}" name="order_items" value="{{ dish.id }}">
+                <label for="dish_{{ dish.id }}">{{ dish.name }} (Price: ${{ dish.price }})</label>
+                <br>
+            {% endfor %}
+            <br>
+            <button type="button" id="selectQuantitiesBtn">Select Quantities</button>
+            <div id="quantitiesContainer" style="display: none;">
+                <label for="quantities">Quantities:</label>
+                {% for dish in dishes %}
+                    <input type="number" id="quantity_{{ dish.id }}" name="quantities" min="1" max="{{ dish.quantity }}" value="1" style="width: 40px;">
+                {% endfor %}
+            </div>
+            <button type="submit" id="placeOrderBtn" style="display: none;">Place Order</button>
+        </form>
+        <p><a href="{% url 'user_section' %}">Back to User Section</a></p>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+    </div>
+    <script>
+        const selectQuantitiesBtn = document.getElementById("selectQuantitiesBtn");
+        const quantitiesContainer = document.getElementById("quantitiesContainer");
+        const placeOrderBtn = document.getElementById("placeOrderBtn");
+
+        selectQuantitiesBtn.addEventListener("click", () => {
+            quantitiesContainer.style.display = "block";
+            placeOrderBtn.style.display = "block";
+            selectQuantitiesBtn.style.display = "none";
+        });
+    </script>
+</body>
+</html>
